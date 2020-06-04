@@ -16,6 +16,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+/*
+    object which represent the payment
+
+    we gonna recover the payment object with the repository after an event come and we gonna update its state
+ */
 public class Payment {
 
     @Id

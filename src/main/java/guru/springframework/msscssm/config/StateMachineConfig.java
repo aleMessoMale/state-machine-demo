@@ -13,7 +13,19 @@ import java.util.EnumSet;
 /**
  * Created by jt on 2019-07-23.
  */
+
+/*
+    This is the state machine configuration, with all the involved states, initial, terminal and so on.
+
+    We gonna use factory, but also builder is present
+
+    In pratica forniamo gli stati che la macchina a stati avrà e gli eventi a cui dovrà rispondere (son i due parametri del
+    parent parametrizzato)
+
+    Il factory è costituito da stati iniziali, enumerazione degli stati e stati finali.g
+ */
 @Slf4j
+/* annotation fondamentale */
 @EnableStateMachineFactory
 @Configuration
 public class StateMachineConfig extends StateMachineConfigurerAdapter<PaymentState, PaymentEvent> {
@@ -27,4 +39,6 @@ public class StateMachineConfig extends StateMachineConfigurerAdapter<PaymentSta
                 .end(PaymentState.PRE_AUTH_ERROR)
                 .end(PaymentState.AUTH_ERROR);
     }
+
+
 }
