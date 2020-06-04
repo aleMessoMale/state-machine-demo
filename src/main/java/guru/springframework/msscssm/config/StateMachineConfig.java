@@ -64,11 +64,22 @@ public class StateMachineConfig extends StateMachineConfigurerAdapter<PaymentSta
                 .withExternal().source(PaymentState.NEW).target(PaymentState.PRE_AUTH_ERROR).event(PaymentEvent.PRE_AUTH_DECLINED);
     }
 
+    /*
+        Aggiungiamo un listener che ci avvisa alla variazione di stato p.es. così possiamo scrivere qualche
+        log o tracciare o effettuare azioni
+     */
     @Override
     public void configure(StateMachineConfigurationConfigurer<PaymentState, PaymentEvent> config) throws Exception {
         StateMachineListenerAdapter<PaymentState, PaymentEvent> adapter = new StateMachineListenerAdapter<>(){
             @Override
             public void stateChanged(State<PaymentState, PaymentEvent> from, State<PaymentState, PaymentEvent> to) {
+
+                /*
+                *   interessante questo String.format che mi permette di formattare le stringhe con i parametri al fondo
+                *
+                *   https://dzone.com/articles/java-string-format-examples
+                *
+                */
                 log.info(String.format("stateChanged(from: %s, to: %s)", from, to));
             }
         };
