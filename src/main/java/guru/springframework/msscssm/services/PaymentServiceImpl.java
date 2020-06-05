@@ -35,6 +35,9 @@ public class PaymentServiceImpl implements PaymentService {
         state machine factory, classe di spring per la creazione di state machine
      */
     private final StateMachineFactory<PaymentState, PaymentEvent> stateMachineFactory;
+    /*
+        interceptor della macchina a stati
+     */
     private final PaymentStateChangeInterceptor paymentStateChangeInterceptor;
 
     /*

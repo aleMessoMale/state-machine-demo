@@ -19,6 +19,21 @@ import java.util.Optional;
  */
 @RequiredArgsConstructor
 @Component
+/*
+    Quello che facciamo è reagire agli eventi che arrivano:
+    - recuperiamo lo stato dell'oggetto Payment dal DB
+    - modifichiamo lo stato con quello che ci passa l'interceptor
+    - lo persistiamo nuovamente
+
+    il service poi ogni volta che arriverà una richiesta (pre autorizzazione p.es)
+    si limiterà a recuperare lo stato dal db, startare la sm e inviare l'evento relativo al metodo (p.es. pre_auth_event)
+
+    E' possibile legarsi a diversi eventi della macchina a stati, noi abbiamo sovrascritto solo il metodo preStateChange, quindi
+    la macchina da sola reagisce all'evento capendo il next state a partire da quanto indicato in StateMachineConfig
+    e noi poco prima che vari lo stato facciamo la nostra logica di set nuovo stato
+    (ce lo passa l'interceptor che conosce il nuovo stato) e persist nel DB essendoci legato al
+    relativo evento di variazione della macchina a stati (che non c'entra nulla con gli eventi di pagamento)
+ */
 public class PaymentStateChangeInterceptor extends StateMachineInterceptorAdapter<PaymentState, PaymentEvent> {
 
     private final PaymentRepository paymentRepository;
