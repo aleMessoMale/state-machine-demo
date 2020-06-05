@@ -52,6 +52,18 @@ public class PaymentServiceImpl implements PaymentService {
         return null;
     }
 
+    /*
+        ciò che fa questo metodo è semplicemente:
+            -   recuperare l'entità Payment dal repository
+            -   ricreare un'entità StateMachine con il factory
+            -   stoppare la macchina a stati
+            -   impostare la macchina a stati tramite l'accessor allo stato che era presente a DB
+            -   ristartare la macchina a stati
+            -   ritornarla
+
+        questo metodo è utilizzato in tutti gli altri metodi poi...
+
+     */
     private StateMachine<PaymentState, PaymentEvent> build(Long paymentId){
         Payment payment = paymentRepository.getOne(paymentId);
 
