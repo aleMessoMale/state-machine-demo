@@ -23,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
         - recuperare lo stato della macchina a stati
         - inviarle un evento
 
+    li mette in transazionalità per evitare situazioni inconsistenti
+
     L'invio del messaggio avviene tramite messaging, spring messaging, quindi con il builder già fatto ad hoc.
 
     Tu hai scelto di utilizzare Redis e hai scritto qualche classe architetturale da te (ma a quanto ho visto

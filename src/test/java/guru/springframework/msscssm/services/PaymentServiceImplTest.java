@@ -14,6 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 
 @SpringBootTest
+/*
+    test di funzionamento del servizio con variazione di stato
+     - ha inserito anche la properties per vedere l'SQL lato jpa (spring.jpa.show-sql=true)
+
+    in pratica usiamo il service per effettuare la variazione NEW -> PRE AUTH e ne verifichiamo, recuperando
+    la sm dal DB, che la variazione sia avvenuta correttamente
+
+ */
 class PaymentServiceImplTest {
 
     @Autowired
