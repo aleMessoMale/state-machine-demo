@@ -93,7 +93,17 @@ public class StateMachineConfig extends StateMachineConfigurerAdapter<PaymentSta
                 .listener(adapter);
     }
 
+    /*
+        questo metodo viene chiamato quando sei in new e ti arriva un evento di PRE_AUTHORIZE, da cui si genererà poi
+        un evento di PRE_AUTH_APPROVED e PRE_AUTH_DECLINED a seconda dell'esito a cui poi la macchina a stati
+        reagirà nuovamente
+
+        Guarda come usa le lambda, che cazzuto, per tornare un oggetto che implementa un'interfaccia (che è l'unica
+        e quindi possiamo usare le lambda)
+     */
     public Action<PaymentState, PaymentEvent> preAuthAction(){
+
+
         return context -> {
             System.out.println("PreAuth was called!!!");
 
