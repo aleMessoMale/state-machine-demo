@@ -35,6 +35,7 @@ public class PaymentServiceImpl implements PaymentService {
         state machine factory, classe di spring per la creazione di state machine
      */
     private final StateMachineFactory<PaymentState, PaymentEvent> stateMachineFactory;
+    private final PaymentStateChangeInterceptor paymentStateChangeInterceptor;
 
     /*
         p.es. qua restituiamo un oggetto Payment con uno stato NEW e lo salviamo a DB.
@@ -105,6 +106,7 @@ public class PaymentServiceImpl implements PaymentService {
 
         sm.getStateMachineAccessor()
                 .doWithAllRegions(sma -> {
+                    sma.addStateMachineInterceptor(paymentStateChangeInterceptor);
                     sma.resetStateMachine(new DefaultStateMachineContext<>(payment.getState(), null, null, null));
                 });
 
