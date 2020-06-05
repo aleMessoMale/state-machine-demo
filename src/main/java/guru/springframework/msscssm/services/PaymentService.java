@@ -8,6 +8,12 @@ import org.springframework.statemachine.StateMachine;
 /**
  * Created by jt on 2019-08-10.
  */
+/*
+    Questo è il payment service, in pratica creiamo e persistiamo un evento di pagamento, il paymentId
+    è l'@Id dell'entità Payment che persistiamo a DB.
+
+    StateMachine è una classe di spring.
+ */
 public interface PaymentService {
 
     Payment newPayment(Payment payment);

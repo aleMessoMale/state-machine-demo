@@ -16,8 +16,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
+    /*
+        state machine factory, classe di spring per la creazione di state machine
+     */
     private final StateMachineFactory<PaymentState, PaymentEvent> stateMachineFactory;
 
+    /*
+        p.es. qua restituiamo un oggetto Payment con uno stato NEW e lo salviamo a DB.
+     */
     @Override
     public Payment newPayment(Payment payment) {
         payment.setState(PaymentState.NEW);
